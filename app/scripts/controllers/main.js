@@ -19,6 +19,7 @@ angular.module('tpplanningPokerApp')
   	var encoded = 'a2h1bnRlckBuZXdvcmJpdC5jby51azpiNTZUdjhVdg==';
   	Restangular.setDefaultHeaders({'Authorization': 'Basic ' + encoded });
   	Restangular.setDefaultHttpFields({withCredentials: true});
+  	Restangular.setDefaultRequestParams('jsonp', {callback: 'JSON_CALLBACK'});
       var baseAccounts = Restangular.all('Context/');
       
       baseAccounts.getList().then(function(accounts) {

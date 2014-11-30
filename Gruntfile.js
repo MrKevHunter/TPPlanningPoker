@@ -130,6 +130,7 @@ module.exports = function (grunt) {
       }
     },
 
+
     // Empties folders to start fresh
     clean: {
       dist: {
@@ -394,19 +395,21 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
+      'server',
       'clean:server',
       'wiredep',
       'concurrent:server',
       'autoprefixer',
+
       'connect:livereload',
       'watch'
     ]);
   });
 
-  grunt.registerTask('server', 'DEPRECATED TASK. Use the "serve" task instead', function (target) {
-    grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-    grunt.task.run(['serve:' + target]);
-  });
+    grunt.registerTask('server', 'Start a custom web server.', function() {
+      grunt.log.writeln('Starting web server on port 56012.');
+      require('./server.js');
+    });
 
   grunt.registerTask('test', [
     'clean:server',
